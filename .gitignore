@@ -20,5 +20,11 @@ dist-ssr
 *.suo
 *.ntvs*
 *.njsproj
-*.sln
+
+
+detector.pkl
+*.csv
+*.pkl
+data/
+
 *.sw?
