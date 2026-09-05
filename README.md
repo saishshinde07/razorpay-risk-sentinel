@@ -1,16 +1,58 @@
-# React + Vite
+# 🛡️ Razorpay Risk Sentinel
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+**Real-Time Fraud-Spike Containment & Rupee-Denominated Cost Tracking**
 
-Currently, two official plugins are available:
+Razorpay Risk Sentinel is a full-stack, dual-brain fraud detection system designed to protect e-commerce merchants from high-velocity card-testing bots and checkout fraud. It intercepts transactions in real-time, evaluates them using a lightweight Machine Learning model (LightGBM), and utilizes an AI Copilot to provide actionable reasoning for transaction holds.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### 🚀 Live Demo
+- **Interactive Split-Screen Demo:** [Live on Vercel](https://razorpay-risk-sentinel-ju1o.vercel.app/demo.html)
+- **Backend API:** [Hosted on Render](https://razorpay-backend-g943.onrender.com)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ⚡ Key Features
 
-## Expanding the Oxlint configuration
+* **Dual-Brain Architecture:** Uses LightGBM for sub-millisecond initial risk scoring, backed by an LLM-based Copilot to analyze edge cases and provide natural language reasoning.
+* **Real-Time WebSocket Streaming:** The React dashboard connects to a FastAPI WebSocket endpoint to visualize transaction velocity and risk scores live.
+* **Interactive Storefront Simulation:** Features a mock e-commerce checkout to manually trigger and visualize bot attacks (20x rapid requests) or genuine user edge cases (fast double-clicks).
+* **Automated Mitigation Audit Trail:** Logs transaction IDs, 3-minute rolling velocity, risk scores, and the AI's final mitigation decision.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+---
+
+## 🛠️ Tech Stack
+
+**Frontend:**
+* React.js (Vite)
+* Recharts (Real-time data visualization)
+* Vercel (Production hosting)
+
+**Backend:**
+* Python / FastAPI
+* LightGBM & Pandas (Data Processing & ML Engine)
+* WebSockets (Bi-directional streaming)
+* Render (Production hosting)
+
+---
+
+## 📂 Project Structure
+
+```text
+razorpay-risk-sentinel/
+├── backend/                # FastAPI & ML Engine
+│   ├── data/               # CSV datasets for simulation
+│   ├── engine.py           # LightGBM training & feature engineering script
+│   ├── server.py           # FastAPI WebSocket & REST endpoints
+│   ├── requirements.txt    # Python dependencies
+│   └── detector.pkl        # Serialized ML model
+├── public/                 # Static Assets for Frontend
+│   ├── demo.html           # Split-screen iframe wrapper (Main Demo)
+│   ├── store.html          # Mock e-commerce storefront layout
+│   └── vite.svg
+├── src/                    # React Frontend Source
+│   ├── App.jsx             # Real-time Dashboard with WebSockets
+│   ├── main.jsx            # React DOM entry point
+│   └── index.css           # Global styles
+├── package.json            # Node dependencies
+├── vite.config.js          # Vite build configuration
+├── vercel.json             # Vercel deployment routing config
+└── README.md               # Project documentation
