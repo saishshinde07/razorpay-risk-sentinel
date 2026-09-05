@@ -239,7 +239,7 @@
 
         async function sendPaymentRequest(amount, card) {
             try {
-                const res = await fetch("http://localhost:8000/api/checkout", {
+                const res = await fetch("https://razorpay-backend-g943.onrender.com/api/checkout", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ amount: amount, card_number: card })

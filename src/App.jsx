@@ -16,8 +16,7 @@ useEffect(() => {
   // ADD THIS LINE TO FORCE THE TAB TITLE:
   document.title = "Razorpay Risk Sentinel";
 
-    const configuredApiUrl = import.meta.env.VITE_API_URL ||
-      (import.meta.env.DEV ? 'http://localhost:8000' : window.location.origin);
+    const configuredApiUrl = import.meta.env.VITE_API_URL || 'https://razorpay-backend-g943.onrender.com';
     const apiUrl = new URL(configuredApiUrl);
     apiUrl.protocol = apiUrl.protocol === 'https:' ? 'wss:' : 'ws:';
     apiUrl.pathname = '/ws/stream';
