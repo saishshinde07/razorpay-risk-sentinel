@@ -12,18 +12,12 @@ export default function App() {
     activeHolds: 0,
   });
 
-useEffect(() => {
-  // ADD THIS LINE TO FORCE THE TAB TITLE:
-  document.title = "Razorpay Risk Sentinel";
+  useEffect(() => {
+    document.title = "Razorpay Risk Sentinel";
 
-    const configuredApiUrl = import.meta.env.VITE_API_URL || 'https://razorpay-backend-g943.onrender.com';
-    const apiUrl = new URL(configuredApiUrl);
-    apiUrl.protocol = apiUrl.protocol === 'https:' ? 'wss:' : 'ws:';
-    apiUrl.pathname = '/ws/stream';
-    apiUrl.search = '';
-    apiUrl.hash = '';
-
-    const ws = new WebSocket(apiUrl.toString());
+    // Explicitly target the Render backend WebSocket to prevent routing mismatches on Vercel branches
+    const wsUrl = "wss://razorpay-backend-g943.onrender.com/ws/stream";
+    const ws = new WebSocket(wsUrl);
 
     ws.onmessage = (event) => {
       const tx = JSON.parse(event.data);
