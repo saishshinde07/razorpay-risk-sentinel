@@ -13,11 +13,12 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from dotenv import load_dotenv
 
-# Load environment variables (though no longer strictly needed since we mock the LLM for the demo)
+# Load environment variables
 load_dotenv() 
 
 app = FastAPI(title="Razorpay Risk Sentinel API")
 
+# --- CORS CONFIGURATION (This allows Vercel to talk to Render) ---
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -72,8 +73,7 @@ def mask_pii(text: str) -> str:
         return tokenize_card(raw_card)
     return re.sub(card_pattern, replacer, text)
 
-
-# 3. System 2: MOCKED LLM Advisory Copilot (Bypasses API Limits for Video Demo)
+# 3. System 2: MOCKED LLM Advisory Copilot
 async def verify_with_llm(tx_data: dict, risk_score: float) -> dict:
     """Simulates the LLM Copilot to bypass API rate limits during the video pitch."""
     
