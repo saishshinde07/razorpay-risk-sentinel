@@ -8,6 +8,32 @@ Razorpay Risk Sentinel is a full-stack, dual-brain fraud detection system design
 - **Interactive Split-Screen Demo:** [Live on Vercel](https://razorpay-risk-sentinel-ju1o.vercel.app/demo.html)
 - **Backend API:** [Hosted on Render](https://razorpay-backend-g943.onrender.com)
 
+
+## 💻 Local Development Setup
+
+To run this project locally, you will need two terminal windows: one for the backend server and one for the frontend client.
+
+### 1. Start the Backend (FastAPI)
+Open your first terminal, navigate to the backend folder, and start the Python server:
+
+```bash
+cd backend
+# Install dependencies
+pip install -r requirements.txt
+# Run the training engine to generate detector.pkl (if missing)
+python engine.py
+# Start the uvicorn server
+uvicorn server:app --reload --port 8000
+
+2. Start the Frontend (React + Vite)
+Open a new second terminal at the root of the project:
+
+Bash
+# Install dependencies
+npm install
+# Start the development server
+npm run dev
+
 ---
 
 ## ⚡ Key Features
