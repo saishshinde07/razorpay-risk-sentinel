@@ -16,7 +16,15 @@ useEffect(() => {
   // ADD THIS LINE TO FORCE THE TAB TITLE:
   document.title = "Razorpay Risk Sentinel";
 
-  const ws = new WebSocket('ws://localhost:8000/ws/stream');
+    const configuredApiUrl = import.meta.env.VITE_API_URL ||
+      (import.meta.env.DEV ? 'http://localhost:8000' : window.location.origin);
+    const apiUrl = new URL(configuredApiUrl);
+    apiUrl.protocol = apiUrl.protocol === 'https:' ? 'wss:' : 'ws:';
+    apiUrl.pathname = '/ws/stream';
+    apiUrl.search = '';
+    apiUrl.hash = '';
+
+    const ws = new WebSocket(apiUrl.toString());
 
     ws.onmessage = (event) => {
       const tx = JSON.parse(event.data);
