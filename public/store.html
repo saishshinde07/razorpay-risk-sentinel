@@ -216,19 +216,16 @@
             document.getElementById('rzpOverlay').style.display = 'none';
         }
 
-        // --- NEW TOAST NOTIFICATION FUNCTION ---
         function showPopup(message, type) {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
             toast.className = `toast ${type}`;
             
-            // Assign icon based on type
             let icon = type === 'success' ? '✅' : type === 'error' ? '🛑' : '⚠️';
             toast.innerHTML = `<span style="font-size:18px">${icon}</span> <span>${message}</span>`;
             
             container.appendChild(toast);
             
-            // Auto remove after 3.5 seconds
             setTimeout(() => {
                 toast.style.opacity = '0';
                 toast.style.transform = 'translateY(-20px)';
@@ -247,7 +244,6 @@
                 
                 const data = await res.json();
                 
-                // Trigger the on-screen popup instead of the inline text
                 if (data.allowed) {
                     showPopup(`Success: ${data.status}`, 'success');
                 } else {
@@ -261,7 +257,6 @@
         function processPayment(isAttack) {
             if (isAttack) {
                 showPopup("Initiating Card Testing Bot...", 'warning');
-                // Fires 20 transactions rapidly to trigger the backend Sentinel
                 for (let i = 0; i < 20; i++) {
                     setTimeout(() => sendPaymentRequest(10, "4111222233334444"), i * 150);
                 }
@@ -274,7 +269,6 @@
             showPopup("Simulating human double-click...", 'warning');
             sendPaymentRequest(currentCheckoutAmount, "4111222233331234");
             
-            // 400ms delay simulates a genuine human mistake
             setTimeout(() => {
                 sendPaymentRequest(currentCheckoutAmount, "4111222233331234");
             }, 400); 
