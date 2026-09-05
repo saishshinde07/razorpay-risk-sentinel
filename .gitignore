@@ -22,7 +22,6 @@ dist-ssr
 *.njsproj
 
 
-detector.pkl
 *.csv
 *.pkl
 data/
